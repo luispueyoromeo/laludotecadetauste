@@ -1,0 +1,8 @@
+import Link from "next/link";
+import { ReactNode } from "react";
+import { contacto } from "@/content/site";
+import { Icon } from "./icons";
+export function PageHero({ eyebrow, title, children, icon = "sun" }: {eyebrow:string;title:string;children:ReactNode;icon?:"sun"|"calendar"|"cake"|"tent"}) { return <section className="page-hero"><div className="container page-hero-inner"><div><p className="eyebrow">{eyebrow}</p><h1>{title}</h1><div className="lead">{children}</div></div><div className={`hero-symbol symbol-${icon}`}><Icon name={icon} size={66}/><span/><span/></div></div></section> }
+export function ContactCta({ title="¿Quieres saber más?", text="Consúltanos y te ayudaremos con la información disponible." }: {title?:string;text?:string}) { return <section className="contact-cta"><div><p className="eyebrow">Información directa</p><h2>{title}</h2><p>{text}</p></div><div className="cta-actions"><a className="button primary" href={contacto.telefonoHref}><Icon name="phone" size={19}/>Llamar al {contacto.telefono}</a><a className="button secondary" href={contacto.emailHref}><Icon name="mail" size={19}/>Escribir un correo</a></div></section> }
+export function ActivityCta() { return <div className="next-step"><div><p className="eyebrow">Siguiente paso</p><h2>Consulta cómo participar</h2><p>Reúne en un solo lugar la información disponible de todas las actividades.</p></div><Link className="button light" href="/inscripciones">Ver inscripciones <Icon name="arrow" size={20}/></Link></div> }
+export function EmptyState({title,children,icon="calendar"}:{title:string;children:ReactNode;icon?:"calendar"|"cake"|"tent"}) {return <div className="empty-state"><span className="empty-icon"><Icon name={icon} size={30}/></span><h3>{title}</h3><p>{children}</p></div>}
