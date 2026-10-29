@@ -34,7 +34,7 @@ export const acampadas: Acampada[] = [];
 export type Inscripcion = { id: string; nombre: string; detalle: string; estado: EstadoInscripcion; enlace?: string };
 export const inscripciones: Inscripcion[] = [
   ...campanas.map((campana) => ({ id: `colonias-${campana.id}`, nombre: `Colonias de ${campana.nombre}`, detalle: "Publicaremos aquí la información de la próxima campaña.", estado: campana.estado, enlace: campana.enlace })),
-  { id: "sabados", nombre: "Sábados ludoteceros", detalle: "Consulta las próximas fechas y cómo participar.", estado: "pendiente" },
+  { id: "sabados", nombre: "Sábados ludotequeros", detalle: "Consulta las próximas fechas y cómo participar.", estado: "pendiente" },
   { id: "cumpleanos", nombre: "Cumpleaños", detalle: "Contacta con la ludoteca para consultar las opciones disponibles.", estado: "pendiente" },
   { id: "acampadas", nombre: "Acampadas", detalle: "La información se publicará junto a cada nueva propuesta.", estado: "pendiente" },
 ];

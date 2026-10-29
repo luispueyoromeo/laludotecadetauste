@@ -3,7 +3,7 @@ import { Icon } from "@/components/icons";
 
 const cards = [
   {href:"/colonias",icon:"sun" as const,title:"Colonias",text:"Propuestas de mañana durante las vacaciones de verano, Navidad y Semana Santa.",className:"yellow"},
-  {href:"/sabados-ludoteceros",icon:"calendar" as const,title:"Sábados ludoteceros",text:"Juego y actividades los sábados del curso escolar, por la mañana y por la tarde.",className:"blue"},
+  {href:"/sabados-ludoteceros",icon:"calendar" as const,title:"Sábados ludotequeros",text:"Juego y actividades los sábados del curso escolar, por la mañana y por la tarde.",className:"blue"},
   {href:"/cumpleanos",icon:"cake" as const,title:"Cumpleaños",text:"Un espacio donde celebrar un día especial. Consulta las opciones disponibles.",className:"coral"},
   {href:"/acampadas",icon:"tent" as const,title:"Acampadas",text:"Experiencias que se organizan a lo largo del año para disfrutar y compartir.",className:"green"},
 ];

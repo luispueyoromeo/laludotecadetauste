@@ -12,7 +12,7 @@ export const contacto = {
 export const navegacion = [
   { href: "/", label: "Inicio" },
   { href: "/colonias", label: "Colonias" },
-  { href: "/sabados-ludoteceros", label: "Sábados ludoteceros" },
+  { href: "/sabados-ludoteceros", label: "Sábados ludotequeros" },
   { href: "/cumpleanos", label: "Cumpleaños" },
   { href: "/acampadas", label: "Acampadas" },
   { href: "/inscripciones", label: "Inscripciones" },
