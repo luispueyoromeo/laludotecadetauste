@@ -17,6 +17,11 @@
   margin-top: 1.25rem;
 }
 
+.direct-links a > span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
 .registration-form {
   width: min(100%, 54rem);
   margin: 2rem auto 0;
