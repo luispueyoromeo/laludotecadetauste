@@ -1,7 +1,6 @@
-export type EstadoInscripcion = "pendiente" | "abierta" | "cerrada";
+import type { ConfiguracionInscripcion } from "@/lib/inscripciones";
 
-export type Campana = {
-  id: "verano" | "navidad" | "semana-santa";
+export type Campana = ConfiguracionInscripcion & {
   nombre: string;
   descripcion: string;
   fechas?: string;
@@ -11,8 +10,6 @@ export type Campana = {
   programacion?: string[];
   tarifas?: string;
   plazo?: string;
-  estado: EstadoInscripcion;
-  enlace?: string;
 };
 
 export const campanas: Campana[] = [
@@ -31,10 +28,24 @@ export type Foto = { src: string; alt: string };
 export type Acampada = { id: string; nombre: string; descripcion: string; fechas?: string; programa?: string[]; informacionPractica?: string[]; fotos?: Foto[]; estado: "proxima" | "realizada" };
 export const acampadas: Acampada[] = [];
 
-export type Inscripcion = { id: string; nombre: string; detalle: string; estado: EstadoInscripcion; enlace?: string };
+export type Inscripcion = ConfiguracionInscripcion & {
+  nombre: string;
+  detalle: string;
+  ruta: string;
+  anclaFicha?: string;
+};
+
 export const inscripciones: Inscripcion[] = [
-  ...campanas.map((campana) => ({ id: `colonias-${campana.id}`, nombre: `Colonias de ${campana.nombre}`, detalle: "Publicaremos aquí la información de la próxima campaña.", estado: campana.estado, enlace: campana.enlace })),
-  { id: "sabados", nombre: "Sábados ludotequeros", detalle: "Consulta las próximas fechas y cómo participar.", estado: "pendiente" },
-  { id: "cumpleanos", nombre: "Cumpleaños", detalle: "Contacta con la ludoteca para consultar las opciones disponibles.", estado: "pendiente" },
-  { id: "acampadas", nombre: "Acampadas", detalle: "La información se publicará junto a cada nueva propuesta.", estado: "pendiente" },
+  ...campanas.map(({ id, nombre, descripcion, estado, enlace }) => ({
+    id,
+    nombre: `Colonias de ${nombre}`,
+    detalle: descripcion,
+    estado,
+    enlace,
+    ruta: "/colonias",
+    anclaFicha: id,
+  })),
+  { id: "sabados", nombre: "Sábados ludotequeros", detalle: "Consulta las próximas fechas y cómo participar.", estado: "pendiente", ruta: "/sabados-ludoteceros" },
+  { id: "cumpleanos", nombre: "Cumpleaños", detalle: "Contacta con la ludoteca para consultar las opciones disponibles.", estado: "pendiente", ruta: "/cumpleanos" },
+  { id: "acampadas", nombre: "Acampadas", detalle: "La información se publicará junto a cada nueva propuesta.", estado: "pendiente", ruta: "/acampadas" },
 ];
