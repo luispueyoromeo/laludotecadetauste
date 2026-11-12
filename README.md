@@ -23,7 +23,11 @@ Los datos que cambiarán con frecuencia están centralizados en `src/content/act
 
 ### Añadir o modificar una campaña de colonias
 
-Edita el elemento correspondiente de `campanas`. Puedes completar `fechas`, `horario`, `edades`, `lugar`, `programacion`, `tarifas` y `plazo`. Mantén el `id` de las campañas existentes para conservar sus enlaces. Si añades otra edición, asigna un `id` único, en minúsculas, con guiones entre palabras.
+Edita el elemento correspondiente de `campanas`. Puedes completar `edicion`, `fechas`, `horario`, `edades`, `lugar`, `programacion`, `tarifas` y `plazo`. La ficha muestra los bloques que tienen datos.
+
+- **Fechas.** Usa un texto o una lista de tramos. Cada tramo del calendario indica los días del mismo mes, el mes y el año, como `{ dias: [23, 24], mes: "diciembre", anio: 2026 }`. También puedes escribir un tramo como texto.
+- **Horario.** Usa `horario` para un horario general, `entrada` con `desde` y `hasta` para una franja flexible y `recogida` para las horas disponibles.
+- **Campaña destacada.** Cambia `idCampanaDestacada` al `id` de la campaña que quieras presentar primero. Mantén los identificadores existentes para conservar sus enlaces. Si añades otra edición, asigna un identificador único, en minúsculas y con guiones entre palabras.
 
 ### Publicar un sábado
 

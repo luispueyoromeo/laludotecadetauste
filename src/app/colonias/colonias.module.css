@@ -1,0 +1,598 @@
+.hero {
+  background: linear-gradient(112deg, #eff7ff 15%, #edf7ff 62%, #fff5de);
+  overflow: hidden;
+}
+
+.heroInner {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(15rem, .6fr);
+  align-items: center;
+  gap: clamp(1rem, 5vw, 5rem);
+  padding-block: clamp(1.75rem, 3.5vw, 3rem);
+}
+
+.hero h1 {
+  margin: 0 0 .65rem;
+  font-size: clamp(3.2rem, 6.5vw, 5rem);
+}
+
+.hero p {
+  max-width: 37rem;
+  margin: 0;
+  color: var(--muted);
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
+}
+
+.heroArt {
+  position: relative;
+  justify-self: center;
+  isolation: isolate;
+  width: 15rem;
+  height: 10.5rem;
+}
+
+.heroArt::before,
+.heroArt::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  border-radius: 50%;
+  transform: rotate(-18deg);
+}
+
+.heroArt::before {
+  inset: .8rem -.15rem .35rem .4rem;
+  background: #dceeff;
+}
+
+.heroArt::after {
+  inset: .5rem -.55rem .15rem 0;
+  border: 1px solid #aacdec;
+}
+
+.heroCalendar,
+.heroSun {
+  position: absolute;
+  display: grid;
+  place-items: center;
+}
+
+.heroCalendar {
+  top: .65rem;
+  left: 2.75rem;
+  width: 8.55rem;
+  height: 8.55rem;
+  border: 1px solid #c4dff5;
+  border-radius: 1.65rem;
+  background: #fff;
+  color: var(--blue);
+  box-shadow: 0 .85rem 2rem #12305b20;
+  transform: rotate(-11deg);
+}
+
+.heroSun {
+  top: .25rem;
+  right: .25rem;
+  width: 3.65rem;
+  height: 3.65rem;
+  border-radius: 1.1rem;
+  background: var(--yellow);
+  color: var(--navy);
+  transform: rotate(12deg);
+}
+
+.heroBlock {
+  position: absolute;
+  bottom: .45rem;
+  left: .8rem;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: .75rem;
+  background: var(--coral);
+  box-shadow: .25rem .3rem 0 #f6c6be;
+  transform: rotate(-14deg);
+}
+
+.campaigns {
+  padding-block: 1.65rem clamp(3rem, 6vw, 5rem);
+}
+
+.selector,
+.periods,
+.pickupTimes {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.selector {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  gap: .85rem;
+}
+
+.summary,
+.campaign {
+  --season-ink: #145990;
+  --season-tint: #edf6ff;
+  --season-border: #c8dff3;
+  --season-banner: #204f82;
+}
+
+.summary[data-temporada="primavera"],
+.campaign[data-temporada="primavera"] {
+  --season-ink: #215f4f;
+  --season-tint: #ebf7ef;
+  --season-border: #c7e4d5;
+  --season-banner: #235d54;
+}
+
+.summary[data-temporada="verano"],
+.campaign[data-temporada="verano"] {
+  --season-ink: #7a4c0a;
+  --season-tint: #fff5dd;
+  --season-border: #ead8a8;
+  --season-banner: #6a4718;
+}
+
+.summary {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: flex-start;
+  gap: .85rem;
+  height: 100%;
+  padding: 1rem 1.05rem;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  background: var(--white);
+  scroll-margin-top: 1rem;
+}
+
+a.summary {
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  min-height: 4.5rem;
+  transition: border-color .18s, transform .18s, box-shadow .18s;
+}
+
+a.summary[data-destacada] {
+  border-color: var(--season-border);
+  background: var(--season-tint);
+}
+
+a.summary:hover {
+  border-color: var(--season-ink);
+  box-shadow: 0 .45rem 1.2rem #12305b14;
+  transform: translateY(-2px);
+}
+
+.iconBox {
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  width: 2.65rem;
+  height: 2.65rem;
+  border-radius: .8rem;
+  background: var(--season-tint);
+  color: var(--season-ink);
+}
+
+a.summary[data-destacada] .iconBox {
+  background: var(--white);
+}
+
+.summaryCopy {
+  min-width: 0;
+}
+
+.summaryCopy h2,
+.summaryCopy strong {
+  display: block;
+  margin: 0 0 .15rem;
+  color: var(--navy);
+  font-size: 1.12rem;
+  line-height: 1.25;
+  letter-spacing: -.015em;
+}
+
+.summaryCopy p,
+.summaryCopy span {
+  margin: 0;
+  color: var(--muted);
+  font-size: .91rem;
+  line-height: 1.45;
+}
+
+.summaryCopy .summaryStatus {
+  display: block;
+  margin-top: .35rem;
+  color: var(--season-ink);
+  font-weight: 700;
+}
+
+.summaryArrow {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--season-ink);
+}
+
+.summaryArrow svg {
+  transform: rotate(90deg);
+}
+
+.campaign {
+  margin-top: 1.55rem;
+  border: 1px solid var(--line);
+  border-radius: 1.45rem;
+  background: var(--white);
+  box-shadow: 0 .7rem 2.1rem #12305b0a;
+  scroll-margin-top: 1rem;
+}
+
+.banner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: clamp(.75rem, 4vw, 3.25rem);
+  padding: clamp(1.35rem, 3.5vw, 2.75rem);
+  border-radius: calc(1.45rem - 1px) calc(1.45rem - 1px) 0 0;
+  overflow: hidden;
+  background: linear-gradient(120deg, var(--navy) 13%, var(--season-banner));
+  color: var(--white);
+}
+
+.banner h2 {
+  margin: 0 0 .6rem;
+  color: var(--white);
+  font-size: clamp(2rem, 4.25vw, 3.55rem);
+  line-height: 1.06;
+  letter-spacing: -.045em;
+  overflow-wrap: anywhere;
+}
+
+.edition {
+  color: #ffda7d;
+  white-space: nowrap;
+}
+
+.bannerCopy p {
+  max-width: 37rem;
+  margin: 0;
+  color: #e1eef9;
+  font-size: clamp(1rem, 1.7vw, 1.15rem);
+}
+
+.bannerArt {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: clamp(4rem, 10vw, 7.25rem);
+  aspect-ratio: 1;
+  margin-inline: .6rem;
+  border: 1px solid #e4f1ff66;
+  border-radius: 50%;
+  background: #ffffff12;
+  color: #dcefff;
+}
+
+.bannerArt::before {
+  content: "";
+  position: absolute;
+  inset: -.65rem;
+  border: 1px solid #e4f1ff35;
+  border-radius: 50%;
+}
+
+.bannerArt::after {
+  content: "";
+  position: absolute;
+  top: .03rem;
+  right: .03rem;
+  width: .65rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #ffda7d;
+}
+
+.bannerArt svg {
+  width: 62%;
+  height: 62%;
+}
+
+.campaignBody {
+  display: grid;
+  gap: clamp(1.15rem, 2.5vw, 1.65rem);
+  padding: clamp(1rem, 3vw, 2.25rem);
+}
+
+.moduleHeading {
+  display: flex;
+  align-items: center;
+  gap: .65rem;
+  margin: 0 0 .7rem;
+  font-size: clamp(1.14rem, 2vw, 1.35rem);
+  line-height: 1.25;
+}
+
+.periods {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 12.65rem), 1fr));
+  gap: .75rem;
+}
+
+.period {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: .55rem;
+  min-width: 0;
+  padding: clamp(.65rem, 1.5vw, 1rem);
+  border: 1px solid var(--season-border);
+  border-radius: .95rem;
+  background: var(--season-tint);
+}
+
+.periodLabel {
+  color: var(--season-ink);
+  font-size: .83rem;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.days,
+.pickupTimes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem;
+}
+
+.days > span,
+.pickupTimes > li {
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--season-border);
+  border-radius: .55rem;
+  background: var(--white);
+  color: var(--navy);
+  font-variant-numeric: tabular-nums;
+  font-weight: 800;
+}
+
+.days > span {
+  min-width: 2.3rem;
+  min-height: 2.6rem;
+  padding-inline: .25rem;
+  font-size: clamp(1.18rem, 2.3vw, 1.65rem);
+  line-height: 1;
+}
+
+.periodMonth,
+.periodText {
+  color: var(--navy);
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14.5rem), 1fr));
+  gap: .85rem;
+}
+
+.fact,
+.registration {
+  min-width: 0;
+  padding: clamp(1rem, 2vw, 1.35rem);
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+}
+
+.fact {
+  background: #fbfdff;
+}
+
+.value,
+.timeRange,
+.deadline {
+  margin: 0;
+  color: var(--navy);
+  font-weight: 700;
+  line-height: 1.42;
+}
+
+.timeOption + .timeOption {
+  margin-top: .65rem;
+}
+
+.timeLabel {
+  display: block;
+  margin-bottom: .2rem;
+  color: var(--muted);
+  font-size: .88rem;
+  font-weight: 700;
+}
+
+.timeRange {
+  font-size: 1.13rem;
+}
+
+.pickupTimes > li {
+  padding: .15rem .52rem;
+}
+
+.note {
+  margin: .55rem 0 0;
+  color: var(--muted);
+  font-size: .95rem;
+  line-height: 1.5;
+}
+
+.program {
+  margin: 0;
+  padding-inline-start: 1.25rem;
+}
+
+.registration {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: .85rem 1.5rem;
+  border-color: var(--season-border);
+  background: var(--season-tint);
+}
+
+.registration .iconBox {
+  background: var(--white);
+}
+
+.deadline {
+  font-size: clamp(1.1rem, 2.1vw, 1.35rem);
+}
+
+.registration .registrationStatus {
+  justify-self: start;
+  font-size: .83rem;
+  background: var(--white);
+}
+
+.registrationLink {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  min-height: 2.75rem;
+  margin-top: .85rem;
+  color: var(--blue);
+  font-weight: 700;
+}
+
+.registrationLink:hover {
+  text-decoration: underline;
+  text-underline-offset: .2em;
+}
+
+@media (max-width: 800px) {
+  .selector {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .selector > li:has([data-destacada]) {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 600px) {
+  .heroInner {
+    display: block;
+  }
+
+  .hero h1 {
+    padding-right: 5.5rem;
+    font-size: clamp(2.8rem, 11vw, 3.8rem);
+  }
+
+  .heroArt {
+    position: absolute;
+    top: .65rem;
+    right: .15rem;
+    transform: scale(.34);
+    transform-origin: top right;
+  }
+
+  .selector {
+    gap: .6rem;
+  }
+
+  article.summary {
+    grid-template-columns: 1fr;
+    gap: .45rem;
+    align-content: start;
+    padding: .7rem;
+  }
+
+  article.summary .iconBox {
+    width: 2rem;
+    height: 2rem;
+    border-radius: .55rem;
+  }
+
+  article.summary .iconBox svg {
+    width: 1.15rem;
+    height: 1.15rem;
+  }
+
+  .summaryCopy p,
+  .summaryCopy span {
+    font-size: .86rem;
+  }
+
+  .banner {
+    align-items: flex-start;
+  }
+
+  .bannerArt {
+    width: 3.1rem;
+    margin: .25rem .15rem 0 0;
+  }
+
+  .bannerArt::before {
+    inset: -.3rem;
+  }
+
+  .bannerArt::after {
+    width: .45rem;
+  }
+
+  .periods,
+  .facts,
+  .registration {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .period {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas: "label days" "month days";
+    align-items: center;
+    align-content: center;
+    gap: .2rem .65rem;
+  }
+
+  .periodLabel {
+    grid-area: label;
+  }
+
+  .periodMonth {
+    grid-area: month;
+  }
+
+  .periodText {
+    grid-column: 1 / -1;
+  }
+
+  .days {
+    grid-area: days;
+    max-width: 9rem;
+    gap: .25rem;
+  }
+
+  .days > span {
+    min-width: 2rem;
+    min-height: 2.25rem;
+  }
+}

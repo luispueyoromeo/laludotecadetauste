@@ -1,11 +1,21 @@
 import type { ConfiguracionInscripcion } from "@/lib/inscripciones";
 
+type TramoColonia = {
+  dias: [number, ...number[]];
+  mes: string;
+  anio: number;
+};
+
 export type Campana = ConfiguracionInscripcion & {
   nombre: string;
   descripcion: string;
-  fechas?: string | string[];
+  temporada?: "navidad" | "primavera" | "verano";
+  edicion?: string;
+  fechas?: string | (TramoColonia | string)[];
   horario?: string;
-  recogida?: string;
+  entrada?: { desde: string; hasta: string };
+  recogida?: string | string[];
+  notaHorario?: string;
   edades?: string;
   lugar?: string;
   notaLugar?: string;
@@ -15,19 +25,23 @@ export type Campana = ConfiguracionInscripcion & {
   notaPlazo?: string;
 };
 
+export const idCampanaDestacada = "navidad";
+
 export const campanas: Campana[] = [
-  { id: "verano", nombre: "Verano", descripcion: "Una propuesta para disfrutar de las mañanas de las vacaciones escolares de verano.", estado: "pendiente" },
   {
     id: "navidad",
     nombre: "Navidad",
-    descripcion: "Mañanas de juego y convivencia durante los días no lectivos de Navidad.",
+    temporada: "navidad",
+    edicion: "2026-2027",
+    descripcion: "Mañanas para jugar, compartir y disfrutar de las vacaciones de Navidad.",
     fechas: [
-      "23 y 24 de diciembre de 2026",
-      "28, 29, 30 y 31 de diciembre de 2026",
-      "4 y 5 de enero de 2027",
+      { dias: [23, 24], mes: "diciembre", anio: 2026 },
+      { dias: [28, 29, 30, 31], mes: "diciembre", anio: 2026 },
+      { dias: [4, 5], mes: "enero", anio: 2027 },
     ],
-    horario: "De 8:30 a 9:30 h, a la hora que elija cada familia.",
-    recogida: "A las 13:00, 13:30 o 14:00 h, a elección de la familia.",
+    entrada: { desde: "8:30", hasta: "9:30" },
+    recogida: ["13:00", "13:30", "14:00"],
+    notaHorario: "Cada familia puede elegir la hora de entrada dentro de esa franja y una de las horas de recogida.",
     edades: "Niños y niñas nacidos entre 2015 y 2023, ambos incluidos.",
     lugar: "La Ludoteca de Tauste*",
     notaLugar: "* La ubicación podrá variar en función del número de inscritos.",
@@ -35,8 +49,25 @@ export const campanas: Campana[] = [
     notaPlazo: "Las solicitudes fuera de plazo quedarán sujetas a la disponibilidad de plazas.",
     estado: "pendiente",
   },
-  { id: "semana-santa", nombre: "Semana Santa", descripcion: "Una alternativa de ocio infantil y conciliación durante las vacaciones de Semana Santa.", estado: "pendiente" },
+  {
+    id: "semana-santa",
+    nombre: "Semana Santa",
+    temporada: "primavera",
+    descripcion: "Ocio infantil y conciliación durante las vacaciones de Semana Santa.",
+    estado: "pendiente",
+  },
+  {
+    id: "verano",
+    nombre: "Verano",
+    temporada: "verano",
+    descripcion: "Una propuesta para disfrutar de las mañanas de las vacaciones escolares de verano.",
+    estado: "pendiente",
+  },
 ];
+
+export function tituloCampana({ nombre, edicion }: Pick<Campana, "nombre" | "edicion">) {
+  return `Colonias de ${nombre}${edicion ? ` ${edicion}` : ""}`;
+}
 
 export type Sabado = { fecha: string; titulo: string; descripcion?: string; turno?: "mañana" | "tarde" | "ambos" };
 export const sabados: Sabado[] = [];
@@ -56,14 +87,14 @@ export type Inscripcion = ConfiguracionInscripcion & {
 };
 
 export const inscripciones: Inscripcion[] = [
-  ...campanas.map(({ id, nombre, descripcion, estado, enlace }) => ({
-    id,
-    nombre: `Colonias de ${nombre}`,
-    detalle: descripcion,
-    estado,
-    enlace,
+  ...campanas.map((campana) => ({
+    id: campana.id,
+    nombre: tituloCampana(campana),
+    detalle: campana.descripcion,
+    estado: campana.estado,
+    enlace: campana.enlace,
     ruta: "/colonias",
-    anclaFicha: id,
+    anclaFicha: campana.id,
   })),
   { id: "sabados", nombre: "Sábados ludotequeros", detalle: "Consulta las próximas fechas y cómo participar.", estado: "pendiente", ruta: "/sabados-ludoteceros" },
   { id: "cumpleanos", nombre: "Cumpleaños", detalle: "Contacta con la ludoteca para consultar las opciones disponibles.", estado: "pendiente", ruta: "/cumpleanos" },
