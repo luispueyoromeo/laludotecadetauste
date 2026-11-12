@@ -41,7 +41,7 @@ export const campanas: Campana[] = [
     ],
     entrada: { desde: "8:30", hasta: "9:30" },
     recogida: ["13:00", "13:30", "14:00"],
-    notaHorario: "Cada familia puede elegir la hora de entrada dentro de esa franja y una de las horas de recogida.",
+    notaHorario: "Cada familia elige su hora de llegada dentro de esa franja y una de las opciones de recogida.",
     edades: "Niños y niñas nacidos entre 2015 y 2023, ambos incluidos.",
     lugar: "La Ludoteca de Tauste*",
     notaLugar: "* La ubicación podrá variar en función del número de inscritos.",
@@ -60,7 +60,7 @@ export const campanas: Campana[] = [
     id: "verano",
     nombre: "Verano",
     temporada: "verano",
-    descripcion: "Una propuesta para disfrutar de las mañanas de las vacaciones escolares de verano.",
+    descripcion: "Mañanas de ocio durante las vacaciones escolares de verano.",
     estado: "pendiente",
   },
 ];

@@ -102,7 +102,7 @@ function FechasCampana({ fechas }: { fechas: NonNullable<Campana["fechas"]> }) {
 
 function HorarioCampana({ horario, entrada, recogida, notaHorario }: Pick<Campana, "horario" | "entrada" | "recogida" | "notaHorario">) {
   return (
-    <section className={styles.fact}>
+    <section className={`${styles.fact} ${styles.schedule}`}>
       <TituloModulo icono="clock">Horario</TituloModulo>
       {horario && (
         <div className={styles.timeOption}>
@@ -143,7 +143,7 @@ export function FichaCampana({ campana, inscripcion }: CampanaConInscripcion) {
     <article className={styles.campaign} data-temporada={campana.temporada} id={campana.id} aria-labelledby={tituloId} tabIndex={-1}>
       <header className={styles.banner}>
         <div className={styles.bannerCopy}>
-          <h2 id={tituloId}>
+          <h2 id={tituloId} aria-label={titulo}>
             Colonias de {campana.nombre}
             {campana.edicion && <>{" "}<span className={styles.edition}>{campana.edicion}</span></>}
           </h2>

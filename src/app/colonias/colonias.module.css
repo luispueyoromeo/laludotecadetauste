@@ -9,7 +9,7 @@
   grid-template-columns: minmax(0, 1fr) minmax(15rem, .6fr);
   align-items: center;
   gap: clamp(1rem, 5vw, 5rem);
-  padding-block: clamp(1.75rem, 3.5vw, 3rem);
+  padding-block: clamp(1.75rem, 3vw, 2.5rem);
 }
 
 .hero h1 {
@@ -485,6 +485,16 @@ a.summary[data-destacada] .iconBox {
 .registrationLink:hover {
   text-decoration: underline;
   text-underline-offset: .2em;
+}
+
+@media (min-width: 701px) {
+  .facts:has(> .schedule):has(> :nth-child(3):last-child) {
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr);
+  }
+
+  .facts:has(> :nth-child(3):last-child) > .schedule {
+    grid-row: span 2;
+  }
 }
 
 @media (max-width: 800px) {
