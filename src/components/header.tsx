@@ -14,7 +14,7 @@ export function Header() {
         <span className="brand-mark" aria-hidden="true"><i/><i/><i/></span>
         <span><b>La Ludoteca</b><small>de Tauste</small></span>
       </Link>
-      <button className="menu-button" aria-expanded={open} aria-controls="menu-principal" onClick={() => setOpen(!open)}><span className="menu-icon" aria-hidden="true"/> <span>Menú</span></button>
+      <button className="menu-button" aria-label="Menú" aria-expanded={open} aria-controls="menu-principal" onClick={() => setOpen(!open)}><span className="menu-icon" aria-hidden="true"/> <span>Menú</span></button>
       <nav id="menu-principal" aria-label="Navegación principal" className={open ? "nav open" : "nav"}>
         {navegacion.map(({href,label}) => <Link key={href} href={href} aria-current={pathname === href ? "page" : undefined} onClick={() => setOpen(false)}>{label}</Link>)}
       </nav>
