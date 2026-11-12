@@ -26,12 +26,13 @@ export default function Colonias() {
           {colonias.map(({ campana, inscripcion }, indice) => {
             const datos = ([
               ["Fechas", campana.fechas],
-              ["Horario", campana.horario],
+              [campana.recogida ? "Entrada" : "Horario", campana.horario],
+              ["Recogida", campana.recogida],
               ["Edades", campana.edades],
-              ["Lugar", campana.lugar],
+              ["Lugar", campana.lugar, campana.notaLugar],
               ["Tarifas", campana.tarifas],
-              ["Plazo", campana.plazo],
-            ] as const).filter(([, valor]) => Boolean(valor));
+              ["Plazo de inscripción", campana.plazo, campana.notaPlazo],
+            ] as const).filter(([, valor]) => Array.isArray(valor) ? valor.length > 0 : Boolean(valor));
 
             return (
               <article className="campaign-card" id={campana.id} key={campana.id} tabIndex={-1}>
@@ -40,7 +41,23 @@ export default function Colonias() {
                 <p>{campana.descripcion}</p>
                 {datos.length > 0 && (
                   <dl className="details-list">
-                    {datos.map(([etiqueta, valor]) => <div key={etiqueta}><dt>{etiqueta}</dt><dd>{valor}</dd></div>)}
+                    {datos.map(([etiqueta, valor, nota]) => (
+                      <div key={etiqueta}>
+                        <dt>{etiqueta}</dt>
+                        <dd>
+                          {Array.isArray(valor) ? (
+                            <ol className="campaign-dates" role="list">
+                              {valor.map((fecha, indiceTramo) => (
+                                <li key={fecha}>
+                                  <span>Tramo {indiceTramo + 1}</span>{" "}{fecha}
+                                </li>
+                              ))}
+                            </ol>
+                          ) : valor}
+                          {nota && <small className="campaign-detail-note">{nota}</small>}
+                        </dd>
+                      </div>
+                    ))}
                   </dl>
                 )}
                 {campana.programacion && (

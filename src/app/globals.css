@@ -12,6 +12,37 @@
   scroll-margin-top: 1rem;
 }
 
+.campaign-grid {
+  align-items: flex-start;
+}
+
+.campaign-dates {
+  display: grid;
+  gap: .35rem;
+  margin: .25rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.campaign-dates li {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  align-items: baseline;
+  gap: .55rem;
+}
+
+.campaign-dates li > span,
+.campaign-detail-note {
+  font-size: .85rem;
+  color: var(--muted);
+}
+
+.campaign-detail-note {
+  display: block;
+  margin-top: .25rem;
+  font-weight: 400;
+}
+
 .registration-card > .button {
   align-self: flex-start;
   margin-top: 1.25rem;
