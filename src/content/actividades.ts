@@ -1,4 +1,4 @@
-import type { ConfiguracionInscripcion } from "@/lib/inscripciones";
+import type { AvisoPrivacidadInscripcion, ConfiguracionInscripcion } from "@/lib/inscripciones";
 
 type TramoColonia = {
   dias: [number, ...number[]];
@@ -23,6 +23,7 @@ export type Campana = ConfiguracionInscripcion & {
   tarifas?: string;
   plazo?: string;
   notaPlazo?: string;
+  privacidad?: AvisoPrivacidadInscripcion;
 };
 
 export const idCampanaDestacada = "navidad";
@@ -47,7 +48,13 @@ export const campanas: Campana[] = [
     notaLugar: "* La ubicación podrá variar en función del número de inscritos.",
     plazo: "Hasta el 13 de diciembre de 2026",
     notaPlazo: "Las solicitudes fuera de plazo quedarán sujetas a la disponibilidad de plazas.",
-    estado: "pendiente",
+    estado: "abierta",
+    enlace: "https://docs.google.com/forms/d/e/1FAIpQLSdobWVe2PDVCh7K4Q-obIv_2Va2OYdTKz8d_HK6Ngy3SB2kFw/viewform",
+    privacidad: {
+      responsable: "Sanpue 5v",
+      correoDerechos: "sanpue5v@gmail.com",
+      nota: "La pregunta sobre enfermedades o alergias es opcional. Si prefieres comunicar esta información por otro canal, consulta con la organización.",
+    },
   },
   {
     id: "semana-santa",

@@ -12,6 +12,12 @@ export type FormularioGoogle = {
   insercion: string;
 };
 
+export type AvisoPrivacidadInscripcion = {
+  responsable: string;
+  correoDerechos: string;
+  nota?: string;
+};
+
 type InscripcionVisible =
   | { estado: "pendiente" | "cerrada"; formulario?: never }
   | { estado: "abierta"; formulario: FormularioGoogle };

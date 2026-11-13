@@ -50,9 +50,31 @@
   font-weight: 600;
 }
 
-.registration-form-intro a {
-  display: inline-block;
+.registration-privacy {
   margin-top: 1rem;
+  padding: .85rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: .75rem;
+  background: #f7fafc;
+  overflow-wrap: anywhere;
+}
+
+.registration-privacy h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.registration-privacy p {
+  margin: .45rem 0 0;
+  font-size: .95rem;
+}
+
+.registration-form-fallback {
+  margin-bottom: 0;
+  font-size: .95rem;
+}
+
+.registration-form-intro a {
   color: var(--blue);
   text-decoration: underline;
   text-underline-offset: .18em;
