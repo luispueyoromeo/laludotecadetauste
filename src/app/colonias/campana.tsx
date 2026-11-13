@@ -210,7 +210,7 @@ export function FichaCampana({ campana, inscripcion }: CampanaConInscripcion) {
         )}
 
         {inscripcion.formulario && (
-          <FormularioInscripcion actividad={titulo} formulario={inscripcion.formulario} privacidad={campana.privacidad} />
+          <FormularioInscripcion actividad={titulo} formulario={inscripcion.formulario} />
         )}
       </div>
     </article>
