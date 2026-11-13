@@ -18,13 +18,18 @@ const iconosTemporada = {
 } as const;
 
 const listaDias = new Intl.ListFormat("es-ES", { type: "conjunction" });
+const euros = new Intl.NumberFormat("es-ES", {
+  style: "currency",
+  currency: "EUR",
+  trailingZeroDisplay: "stripIfInteger",
+});
 
 function tieneContenido(valor: unknown) {
   return Array.isArray(valor) ? valor.length > 0 : Boolean(valor);
 }
 
 export function tieneInformacion(campana: Campana) {
-  return [
+  return campana.precioDiaSuelto !== undefined || [
     campana.fechas, campana.entrada, campana.horario, campana.recogida,
     campana.edades, campana.lugar, campana.tarifas, campana.plazo, campana.programacion,
   ].some(tieneContenido);
@@ -72,29 +77,57 @@ function TituloModulo({ icono, children }: { icono: Icono; children: ReactNode }
   );
 }
 
-function FechasCampana({ fechas }: { fechas: NonNullable<Campana["fechas"]> }) {
+function FechasCampana({ fechas, precioDiaSuelto }: Pick<Campana, "fechas" | "precioDiaSuelto">) {
+  const textoFechas = typeof fechas === "string" ? fechas : undefined;
+  const tramos = Array.isArray(fechas) ? fechas : [];
+  const tieneFechas = Boolean(textoFechas) || tramos.length > 0;
+  const tienePrecios = precioDiaSuelto !== undefined
+    || tramos.some((tramo) => typeof tramo !== "string" && tramo.precio !== undefined);
+  if (!tieneFechas && !tienePrecios) return null;
+
+  const titulo = tieneFechas ? "Fechas de celebración" : "Precios de inscripción";
+
   return (
     <section>
-      <TituloModulo icono="calendar">Fechas de celebración</TituloModulo>
-      {typeof fechas === "string" ? <p className={styles.value}>{fechas}</p> : (
+      <TituloModulo icono={tieneFechas ? "calendar" : "ticket"}>
+        {tieneFechas && tienePrecios ? "Fechas y precios" : titulo}
+      </TituloModulo>
+      {textoFechas && <p className={styles.value}>{textoFechas}</p>}
+      {tramos.length > 0 && (
         <ol className={styles.periods} role="list">
-          {fechas.map((tramo, indice) => (
-            <li className={styles.period} key={indice}>
-              <span className={styles.periodLabel}>Tramo {indice + 1}</span>
-              {typeof tramo === "string" ? <span className={styles.periodText}>{tramo}</span> : (
-                <>
-                  <span className={styles.days} aria-hidden="true">
-                    {tramo.dias.map((dia) => <span key={dia}>{dia}</span>)}
-                  </span>
-                  <span className={styles.periodMonth} aria-hidden="true">{tramo.mes} de {tramo.anio}</span>
-                  <span className={styles.srOnly}>
-                    {listaDias.format(tramo.dias.map(String))} de {tramo.mes} de {tramo.anio}
-                  </span>
-                </>
-              )}
-            </li>
-          ))}
+          {tramos.map((tramo, indice) => {
+            const precio = typeof tramo === "string" ? undefined : tramo.precio;
+
+            return (
+              <li className={styles.period} data-precio={precio !== undefined || undefined} key={indice}>
+                <div className={styles.periodHeader}>
+                  <span className={styles.periodLabel}>Tramo {indice + 1}</span>
+                  {precio !== undefined && <strong className={styles.price}>{euros.format(precio)}</strong>}
+                </div>
+                {typeof tramo === "string" ? <span className={styles.periodText}>{tramo}</span> : (
+                  <>
+                    <span className={styles.days} aria-hidden="true">
+                      {tramo.dias.map((dia) => <span key={dia}>{dia}</span>)}
+                    </span>
+                    <span className={styles.periodMonth} aria-hidden="true">{tramo.mes} de {tramo.anio}</span>
+                    <span className={styles.srOnly}>
+                      {listaDias.format(tramo.dias.map(String))} de {tramo.mes} de {tramo.anio}
+                    </span>
+                  </>
+                )}
+              </li>
+            );
+          })}
         </ol>
+      )}
+      {precioDiaSuelto !== undefined && (
+        <div className={styles.singleDay}>
+          <span className={styles.iconBox}><Icon name="ticket" size={21} /></span>
+          <strong>Días sueltos</strong>
+          <p className={styles.singleDayPrice}>
+            <strong className={styles.price}>{euros.format(precioDiaSuelto)}</strong>{" "}<span>por día</span>
+          </p>
+        </div>
       )}
     </section>
   );
@@ -153,7 +186,7 @@ export function FichaCampana({ campana, inscripcion }: CampanaConInscripcion) {
       </header>
 
       <div className={styles.campaignBody}>
-        {campana.fechas && tieneContenido(campana.fechas) && <FechasCampana fechas={campana.fechas} />}
+        <FechasCampana fechas={campana.fechas} precioDiaSuelto={campana.precioDiaSuelto} />
 
         {tieneDatos && (
           <div className={styles.facts}>

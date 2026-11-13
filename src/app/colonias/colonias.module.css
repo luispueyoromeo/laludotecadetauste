@@ -337,12 +337,52 @@ a.summary[data-destacada] .iconBox {
   background: var(--season-tint);
 }
 
+.periodHeader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: .5rem;
+}
+
 .periodLabel {
   color: var(--season-ink);
   font-size: .83rem;
   font-weight: 800;
   letter-spacing: .06em;
   text-transform: uppercase;
+}
+
+.price {
+  color: var(--season-ink);
+  font-size: clamp(1.3rem, 2.5vw, 1.65rem);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.15;
+  white-space: nowrap;
+}
+
+.singleDay {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: .75rem;
+  margin-top: .75rem;
+  padding: .65rem clamp(.65rem, 1.5vw, 1rem);
+  border: 1px solid var(--season-border);
+  border-radius: .95rem;
+  background: #fbfdff;
+  color: var(--navy);
+}
+
+.singleDayPrice {
+  margin: 0;
+  text-align: end;
+  line-height: 1.25;
+}
+
+.singleDayPrice span {
+  display: block;
+  color: var(--muted);
+  font-size: .88rem;
 }
 
 .days,
@@ -583,7 +623,12 @@ a.summary[data-destacada] .iconBox {
     gap: .2rem .65rem;
   }
 
-  .periodLabel {
+  .period[data-precio] {
+    grid-template-areas: "label label" "month days";
+    row-gap: .4rem;
+  }
+
+  .periodHeader {
     grid-area: label;
   }
 

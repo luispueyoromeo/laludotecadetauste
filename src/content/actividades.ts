@@ -4,6 +4,7 @@ type TramoColonia = {
   dias: [number, ...number[]];
   mes: string;
   anio: number;
+  precio?: number;
 };
 
 export type Campana = ConfiguracionInscripcion & {
@@ -12,6 +13,7 @@ export type Campana = ConfiguracionInscripcion & {
   temporada?: "navidad" | "primavera" | "verano";
   edicion?: string;
   fechas?: string | (TramoColonia | string)[];
+  precioDiaSuelto?: number;
   horario?: string;
   entrada?: { desde: string; hasta: string };
   recogida?: string | string[];
@@ -35,10 +37,11 @@ export const campanas: Campana[] = [
     edicion: "2026-2027",
     descripcion: "Mañanas para jugar, compartir y disfrutar de las vacaciones de Navidad.",
     fechas: [
-      { dias: [23, 24], mes: "diciembre", anio: 2026 },
-      { dias: [28, 29, 30, 31], mes: "diciembre", anio: 2026 },
-      { dias: [4, 5], mes: "enero", anio: 2027 },
+      { dias: [23, 24], mes: "diciembre", anio: 2026, precio: 20 },
+      { dias: [28, 29, 30, 31], mes: "diciembre", anio: 2026, precio: 40 },
+      { dias: [4, 5], mes: "enero", anio: 2027, precio: 20 },
     ],
+    precioDiaSuelto: 15,
     entrada: { desde: "8:30", hasta: "9:30" },
     recogida: ["13:00", "13:30", "14:00"],
     notaHorario: "Cada familia elige su hora de llegada dentro de esa franja y una de las opciones de recogida.",
