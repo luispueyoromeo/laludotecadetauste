@@ -360,17 +360,43 @@ a.summary[data-destacada] .iconBox {
   white-space: nowrap;
 }
 
-.singleDay {
+.singleDay,
+.siblingDiscount {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
   gap: .75rem;
   margin-top: .75rem;
   padding: .65rem clamp(.65rem, 1.5vw, 1rem);
   border: 1px solid var(--season-border);
   border-radius: .95rem;
-  background: #fbfdff;
   color: var(--navy);
+}
+
+.singleDay {
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  background: #fbfdff;
+}
+
+.siblingDiscount {
+  grid-template-columns: auto minmax(0, 1fr);
+  border-color: #ead8a8;
+  background: var(--cream);
+}
+
+.discountBadge {
+  padding: .35rem .5rem;
+  border-radius: .55rem;
+  background: var(--white);
+}
+
+.discountCopy {
+  margin: 0;
+  line-height: 1.45;
+}
+
+.discountCopy span {
+  display: block;
+  color: var(--muted);
 }
 
 .singleDayPrice {

@@ -14,6 +14,7 @@ export type Campana = ConfiguracionInscripcion & {
   edicion?: string;
   fechas?: string | (TramoColonia | string)[];
   precioDiaSuelto?: number;
+  descuentoHermanos?: number;
   horario?: string;
   entrada?: { desde: string; hasta: string };
   recogida?: string | string[];
@@ -42,6 +43,7 @@ export const campanas: Campana[] = [
       { dias: [4, 5], mes: "enero", anio: 2027, precio: 20 },
     ],
     precioDiaSuelto: 15,
+    descuentoHermanos: 20,
     entrada: { desde: "8:30", hasta: "9:30" },
     recogida: ["13:00", "13:30", "14:00"],
     notaHorario: "Cada familia elige su hora de llegada dentro de esa franja y una de las opciones de recogida.",

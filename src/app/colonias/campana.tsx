@@ -23,13 +23,14 @@ const euros = new Intl.NumberFormat("es-ES", {
   currency: "EUR",
   trailingZeroDisplay: "stripIfInteger",
 });
+const porcentaje = new Intl.NumberFormat("es-ES", { style: "percent", maximumFractionDigits: 2 });
 
 function tieneContenido(valor: unknown) {
   return Array.isArray(valor) ? valor.length > 0 : Boolean(valor);
 }
 
 export function tieneInformacion(campana: Campana) {
-  return campana.precioDiaSuelto !== undefined || [
+  return campana.precioDiaSuelto !== undefined || campana.descuentoHermanos !== undefined || [
     campana.fechas, campana.entrada, campana.horario, campana.recogida,
     campana.edades, campana.lugar, campana.tarifas, campana.plazo, campana.programacion,
   ].some(tieneContenido);
@@ -77,11 +78,11 @@ function TituloModulo({ icono, children }: { icono: Icono; children: ReactNode }
   );
 }
 
-function FechasCampana({ fechas, precioDiaSuelto }: Pick<Campana, "fechas" | "precioDiaSuelto">) {
+function FechasCampana({ fechas, precioDiaSuelto, descuentoHermanos }: Pick<Campana, "fechas" | "precioDiaSuelto" | "descuentoHermanos">) {
   const textoFechas = typeof fechas === "string" ? fechas : undefined;
   const tramos = Array.isArray(fechas) ? fechas : [];
   const tieneFechas = Boolean(textoFechas) || tramos.length > 0;
-  const tienePrecios = precioDiaSuelto !== undefined
+  const tienePrecios = precioDiaSuelto !== undefined || descuentoHermanos !== undefined
     || tramos.some((tramo) => typeof tramo !== "string" && tramo.precio !== undefined);
   if (!tieneFechas && !tienePrecios) return null;
 
@@ -126,6 +127,15 @@ function FechasCampana({ fechas, precioDiaSuelto }: Pick<Campana, "fechas" | "pr
           <strong>Días sueltos</strong>
           <p className={styles.singleDayPrice}>
             <strong className={styles.price}>{euros.format(precioDiaSuelto)}</strong>{" "}<span>por día</span>
+          </p>
+        </div>
+      )}
+      {descuentoHermanos !== undefined && (
+        <div className={styles.siblingDiscount}>
+          <strong className={`${styles.price} ${styles.discountBadge}`}>{porcentaje.format(descuentoHermanos / 100)}</strong>
+          <p className={styles.discountCopy}>
+            <strong>Descuento para hermanos</strong>
+            <span>Se aplica al importe total de la inscripción de cada hermano a partir del segundo.</span>
           </p>
         </div>
       )}
@@ -186,7 +196,11 @@ export function FichaCampana({ campana, inscripcion }: CampanaConInscripcion) {
       </header>
 
       <div className={styles.campaignBody}>
-        <FechasCampana fechas={campana.fechas} precioDiaSuelto={campana.precioDiaSuelto} />
+        <FechasCampana
+          fechas={campana.fechas}
+          precioDiaSuelto={campana.precioDiaSuelto}
+          descuentoHermanos={campana.descuentoHermanos}
+        />
 
         {tieneDatos && (
           <div className={styles.facts}>
