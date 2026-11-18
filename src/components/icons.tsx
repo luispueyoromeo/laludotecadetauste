@@ -1,5 +1,5 @@
 type IconProps = {
-  name: "sun" | "calendar" | "cake" | "tent" | "arrow" | "phone" | "mail" | "pin" | "instagram"
+  name: "sun" | "calendar" | "cake" | "tent" | "arrow" | "phone" | "whatsapp" | "mail" | "pin" | "instagram"
     | "snowflake" | "sprout" | "clock" | "people" | "clipboard" | "ticket";
   size?: number;
 };
@@ -11,6 +11,7 @@ export function Icon({ name, size = 24 }: IconProps) {
     tent: <><path d="m3 21 9-18 9 18H3Z"/><path d="m12 3 3 18M12 3 9 21M7 21l5-7 5 7"/></>,
     arrow: <><path d="M5 12h14M13 6l6 6-6 6"/></>,
     phone: <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.69 2.8a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.33 1.84.56 2.8.69A2 2 0 0 1 22 16.92Z"/>,
+    whatsapp: <><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21Z"/><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"/></>,
     mail: <><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></>,
     pin: <><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2"/></>,
     instagram: <><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></>,

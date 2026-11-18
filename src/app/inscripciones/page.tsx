@@ -45,7 +45,8 @@ export default function Inscripciones() {
       <section className="direct-contact">
         <div><p className="eyebrow">Contacto</p><h2>¿Tienes dudas sobre una actividad?</h2><p>Si necesitas información sobre una convocatoria, contacta con la ludoteca. Las solicitudes de plaza se registran en Google Forms.</p></div>
         <div className="direct-links">
-          <a href={contacto.telefonoHref}><Icon name="phone" /><span><small>Llámanos</small>{contacto.telefono}</span></a>
+          <a href={contacto.whatsappHref} target="_blank" rel="noreferrer"><Icon name="whatsapp" /><span><small>WhatsApp · Canal principal</small>{contacto.telefono}</span></a>
+          <a href={contacto.telefonoHref}><span><small>También atendemos llamadas</small>{contacto.telefono}</span></a>
           <a href={contacto.emailHref}><Icon name="mail" /><span><small>Escríbenos</small>{contacto.email}</span></a>
         </div>
       </section>

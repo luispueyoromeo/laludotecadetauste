@@ -2,6 +2,7 @@
 export const contacto = {
   telefono: "624 113 909",
   telefonoHref: "tel:+34624113909",
+  whatsappHref: "https://wa.me/34624113909",
   email: "laludotecadetauste@gmail.com",
   emailHref: "mailto:laludotecadetauste@gmail.com",
   instagram: "@laludotecadetauste",

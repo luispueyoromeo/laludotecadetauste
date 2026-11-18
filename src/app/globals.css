@@ -21,6 +21,11 @@
   overflow-wrap: anywhere;
 }
 
+.footer-call {
+  text-decoration: underline;
+  text-underline-offset: .2em;
+}
+
 .registration-form {
   width: min(100%, 54rem);
   margin: 2rem auto 0;
