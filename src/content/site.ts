@@ -1,7 +1,7 @@
 /** Datos generales: edita aquí los canales de contacto si cambian. */
 export const contacto = {
-  telefono: "650 044 395",
-  telefonoHref: "tel:+34650044395",
+  telefono: "624 113 909",
+  telefonoHref: "tel:+34624113909",
   email: "laludotecadetauste@gmail.com",
   emailHref: "mailto:laludotecadetauste@gmail.com",
   instagram: "@laludotecadetauste",
